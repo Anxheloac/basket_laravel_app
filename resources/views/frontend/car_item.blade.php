@@ -17,7 +17,9 @@
                 </ul>
             </div>
             <div class="car__item__price">
-                <span class="car-option purchase-btn" data-carid="{{ $car->id }}">Purchase</span>
+                <span class="car-option purchase-btn" data-auth="{{ Auth::check() ? 1 : 0 }}" data-isadmin="{{ Auth::check() && Auth::user()->isAdmin() ? 1 : 0 }}" data-carid="{{ $car->id }}">
+                    Purchase
+                </span>
                 <h6>${{$car->price}}</h6>
             </div>
         </div>

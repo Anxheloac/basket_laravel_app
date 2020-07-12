@@ -40,12 +40,10 @@ class Order extends Model
     public function totalAmount()
     {
         $cars = $this->cars;
-        $totalAmount = 0;
-        foreach ($cars as $key => $carItem) {
-            $totalAmount += ($carItem->price*$carItem->pivot->quantity);
-        }
-
-        return $totalAmount;
+        
+        return $this->cars->sum(function($carItem){
+            return $carItem->price*$carItem->pivot->quantity;
+        });
     }
 
     /**

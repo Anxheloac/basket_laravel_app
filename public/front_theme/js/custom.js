@@ -8,6 +8,10 @@ $(document).ready(function(){
 })
 
 $('.purchase-btn').click(function () {
+	if($(this).data('auth') == 1 && $(this).data('isadmin') == 1){
+		toastr.warning('Admin users can\'t purchase!');
+		return;
+	}
     $.ajax({
 	  type: "POST",
 	  url: "/basket/add",
